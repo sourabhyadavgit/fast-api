@@ -1,13 +1,15 @@
+import json
 from fastapi import FastAPI
 from pydantic import BaseModel
-
+from kafka import KafkaConsumer
+from kafka import KafkaProducer
 app = FastAPI()
 
 class Mort_cust(BaseModel):
-    name: str
+    Customer_id: str
+    user: str
     salary: int
-    age: int
-    Type: str
+    postcode: str
     token: str
 
 
@@ -66,7 +68,25 @@ def customer_det_name(name: str):
 def add_cust(mort_cust: Mort_cust):
     new_token = mort_cust.token
     status = decode_user(new_token)["access"]
+    ORDER_KAFKA_TOPIC = "Order_Details"
+    ORDER_Limit = 2
+
+    producer = KafkaProducer(bootstrap_servers="192.168.1.112:9092")
+    
+    data = {
+            "Customer_id" : mort_cust.Customer_id,
+            "user_id" : mort_cust.user,
+            "salary"  : mort_cust.salary,
+            "postcode" : mort_cust.postcode
+        }
+    producer.send(
+            ORDER_KAFKA_TOPIC,
+            json.dumps(data).encode("utf-8")
+        )
+    print(f"done sending{mort_cust.user}")
+
+    producer.flush()
 #    return status
 #    print("status is " + status)
-    new_custname = mort_cust.name
+    new_custname = mort_cust.user
     return f"new customer name is {new_custname} and status is {status}"

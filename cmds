@@ -1,0 +1,8 @@
+C:\Users\saura\OneDrive\Desktop\Project\fast-api>python -m uvicorn myapi:app --reload
+{
+  "Customer_id": "5",
+  "user": "Sam",
+  "salary": 15,
+  "postcode": "BL22",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoic3lzLXRlc3QtYWRtaW4iLCJhY2Nlc3MiOiIgYXBwcm92ZWQifQ.YxbySOGakEOzic1vA8ZCb6ErETBDOVp3OSt5AEedfdk"
+}
