@@ -51,7 +51,7 @@ def decode_user(token: str):
 
 @app.get("/")
 def index():
-    return {"user":"SourabhMy"}
+    return {"user":"SourabhMyJ"}
 
 @app.get("/customer-details/{customer_id}")
 def customer_details(customer_id: int):
