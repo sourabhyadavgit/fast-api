@@ -37,7 +37,7 @@ def encode_user():
                               algorithm="HS256")
                     
     return encoded_data
-
+# test
 def decode_user(token: str):
     """
     :param token: jwt token
